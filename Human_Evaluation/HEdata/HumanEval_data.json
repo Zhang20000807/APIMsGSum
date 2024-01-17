@@ -1,0 +1,352 @@
+[
+    {
+        "id": 63,
+        "raw_code": "private static native boolean renderFrame(int[] pixels,long gifFileInPtr,int[] metaData);\n",
+        "gold_summary": "decode a frame if need ..",
+        "summary1": "try to render frame data ..",
+        "summary2": "convenience method for render a frame data buff .."
+    },
+    {
+        "id": 556,
+        "raw_code": "public void addListener(Listener listener){\n  mListeners.add(listener);\n  notifyServiceDiscovered(mMatchingDrones);\n}\n",
+        "gold_summary": "add a listener all call back of the interface listener will be call with in this function should be call in the main thread ..",
+        "summary1": "listen for change in the up date notification ..",
+        "summary2": "add a new listener to the set of listener .."
+    },
+    {
+        "id": 711,
+        "raw_code": "public Server start() throws SQLException {\n  try {\n    started=true;\n    service.start();\n    String name=service.getName() + \" (\" + service.getURL()+ \")\";\n    Thread t=new Thread(this,name);\n    t.setDaemon(service.isDaemon());\n    t.start();\n    for (int i=1; i < 64; i+=i) {\n      wait(i);\n      if (isRunning(false)) {\n        return this;\n      }\n    }\n    if (isRunning(true)) {\n      return this;\n    }\n    throw DbException.get(ErrorCode.EXCEPTION_OPENING_PORT_2,name,\"timeout; \" + \"please check your network configuration, specially the file /etc/hosts\");\n  }\n catch (  DbException e) {\n    throw DbException.toSQLException(e);\n  }\n}\n",
+        "gold_summary": "try to start the server ..",
+        "summary1": "start the data base ..",
+        "summary2": "start the gem fire jmx service .."
+    },
+    {
+        "id": 745,
+        "raw_code": "public void addProcessInteractionListener(final ProcessInteractionListener l){\n  if (l == null) {\n    throw new IllegalArgumentException(\"l must not be null!\");\n  }\n  processInteractionListeners.add(l);\n}\n",
+        "gold_summary": "add a listener that will be inform when the user right click an operator or a port ..",
+        "summary1": "add a process of interaction listener ..",
+        "summary2": "add specify process interaction listener .."
+    },
+    {
+        "id": 845,
+        "raw_code": "public Prototype undump(InputStream stream,String chunkname) throws IOException {\n  if (stream.read() != LUA_SIGNATURE[0] || stream.read() != LUA_SIGNATURE[1] || stream.read() != LUA_SIGNATURE[2] || stream.read() != LUA_SIGNATURE[3])   return null;\n  String sname=getSourceName(chunkname);\n  LoadState s=new LoadState(stream,sname);\n  s.loadHeader();\nswitch (s.luacNumberFormat) {\ncase NUMBER_FORMAT_FLOATS_OR_DOUBLES:\ncase NUMBER_FORMAT_INTS_ONLY:\ncase NUMBER_FORMAT_NUM_PATCH_INT32:\n    break;\ndefault :\n  throw new LuaError(\"unsupported int size\");\n}\nreturn s.loadFunction(LuaString.valueOf(sname));\n}\n",
+        "gold_summary": "load input stream as a lua binary chunk if the first 4 byte be the lua binary signature ..",
+        "summary1": "un dump the content of a stream from a stream ..",
+        "summary2": "load a resource lua script object from a stream .."
+    },
+    {
+        "id": 1483,
+        "raw_code": "public void ensureCapacity(int mincap){\n  if (mincap > array.length) {\n    int newcap=((array.length * 3) >> 1) + 1;\n    int[] olddata=array;\n    array=new int[newcap < mincap ? mincap : newcap];\n    System.arraycopy(olddata,0,array,0,size);\n  }\n}\n",
+        "gold_summary": "increase the capacity of this array list instance , if necessary , to ensure that it can hold at least the number of element specify by the minimum capacity argument ..",
+        "summary1": "ensure capacity and initial array when at least one more element but normally expand by about <number> , give minimum cap ..",
+        "summary2": "ensure that there be enough space in the array to accommodate at least the number of element but normally expand by about <number> , give up allow retry on contention which we expect to be rare .."
+    },
+    {
+        "id": 1544,
+        "raw_code": "boolean removeDisplay(Display display){\n  return m_displays.remove(display);\n}\n",
+        "gold_summary": "remove a display from this visualization ..",
+        "summary1": "remove a display from the display list ..",
+        "summary2": "remove the specify display from the display list .."
+    },
+    {
+        "id": 2048,
+        "raw_code": "private List<String> split(String prefix){\n  List<String> parts=new ArrayList<String>();\n  int bracketCount=0;\n  boolean inquotes=false;\n  int lastIndex=0;\n  for (int i=0; i < prefix.length(); i++) {\n    char c=prefix.charAt(i);\n    if (c == '[') {\n      bracketCount++;\n      continue;\n    }\n else     if (c == '\"') {\n      inquotes=!inquotes;\n      continue;\n    }\n else     if (c == ']') {\n      bracketCount--;\n      if (bracketCount < 0) {\n        throw new RuntimeException(\"Malformed prefix: \" + prefix);\n      }\n      continue;\n    }\n    if (c == ':' && !inquotes && bracketCount == 0) {\n      parts.add(prefix.substring(lastIndex,i));\n      lastIndex=i + 1;\n    }\n  }\n  if (lastIndex < prefix.length() - 1 && !inquotes && bracketCount == 0) {\n    parts.add(prefix.substring(lastIndex));\n  }\n  return parts;\n}\n",
+        "gold_summary": "give some dot separate prefix , split on the colon that be not with in quote , and not with in bracket ..",
+        "summary1": "split a reg ex string in to sub part token ..",
+        "summary2": "split a string that may be quote separator and their correspond prefix if necessary .."
+    },
+    {
+        "id": 2272,
+        "raw_code": "public void test_reopen01(){\n  final IRawStore store=new SimpleMemoryRawStore();\n  final BTree btree;\n{\n    IndexMetadata md=new IndexMetadata(UUID.randomUUID());\n    md.setBranchingFactor(3);\n    btree=BTree.create(store,md);\n  }\n  assertTrue(btree.isOpen());\n  btree.close();\n  assertFalse(btree.isOpen());\n  try {\n    btree.close();\n    fail(\"Expecting: \" + IllegalStateException.class);\n  }\n catch (  IllegalStateException ex) {\n    if (log.isInfoEnabled())     log.info(\"Ignoring expected exception: \" + ex);\n  }\n  assertNotNull(btree.getRoot());\n  assertTrue(btree.isOpen());\n}\n",
+        "gold_summary": "test close on a new tree should force the root to the store since a new root be dirty if empty . reopen should then reload the empty root and on life go ..",
+        "summary1": "test verify some of the basic principle of the fuse view , include that a delete entry in the first source will mask an un delete entry in a secondary source ..",
+        "summary2": "test verify some of the basic principle of the fuse view , include that a delete entry in the first source will mask an un insert entry in to a secondary source . it also verify that .."
+    },
+    {
+        "id": 2841,
+        "raw_code": "private static Object createAndBindItem(ParameterAccess parameters,Class<?> itemType){\n  try {\n    Object value=itemType.newInstance();\n    bind(value,parameters);\n    return value;\n  }\n catch (  InstantiationException|IllegalAccessException e) {\n    throw new BindingException(\"Failed to instantiate new instance of \" + itemType,e);\n  }\n}\n",
+        "gold_summary": "create and bind the parameter to a new item ..",
+        "summary1": "create an instance of an item type and bind ..",
+        "summary2": "create an instance of a class and register it with the give parameter type .."
+    },
+    {
+        "id": 2953,
+        "raw_code": "public void insert(Component component,int index){\n  if (index < 0) {\n    throw new IllegalArgumentException(\"index less than zero.\");\n  }\n  int nitems=getComponentCount();\n  Vector<Component> tempItems=new Vector<Component>();\n  for (int i=index; i < nitems; i++) {\n    tempItems.addElement(getComponent(index));\n    remove(index);\n  }\n  add(component);\n  for (  Component tempItem : tempItems) {\n    add(tempItem);\n  }\n}\n",
+        "gold_summary": "insert the specify component in to the menu at a give position ..",
+        "summary1": "insert a component at the specify position ..",
+        "summary2": "insert a component in to this vector .."
+    },
+    {
+        "id": 3012,
+        "raw_code": "public Boolean exists(String email){\n  for (  Person person : people) {\n    if (email.equals(person.getEmail())) {\n      return true;\n    }\n  }\n  return false;\n}\n",
+        "gold_summary": "give an email check if the person exist in the manager ..",
+        "summary1": "test if an email exist ..",
+        "summary2": "return true if the give person exist .."
+    },
+    {
+        "id": 3468,
+        "raw_code": "protected void update(int length){\n  tickLabelValues.clear();\n  tickLabels.clear();\n  tickLabelPositions.clear();\n  if (scale.isLogScaleEnabled()) {\n    updateTickLabelForLogScale(length);\n  }\n else {\n    updateTickLabelForLinearScale(length);\n  }\n  updateTickVisibility();\n  updateTickLabelMaxLengthAndHeight();\n}\n",
+        "gold_summary": "up date the tick label ..",
+        "summary1": "up date the number of tick label ..",
+        "summary2": "up date the value of the tick label .."
+    },
+    {
+        "id": 3515,
+        "raw_code": "protected static INaviRawModule findRawModule(final int rawModuleId,final List<INaviRawModule> rawModules){\n  Preconditions.checkArgument(rawModuleId > 0,\"Raw module id %s must be positive integer\",rawModuleId);\n  Preconditions.checkNotNull(rawModules,\"IE02263: raw modules argument can not be null\");\n  for (  final INaviRawModule rawModule : rawModules) {\n    if (rawModule.getId() == rawModuleId) {\n      return rawModule;\n    }\n  }\n  throw new IllegalStateException(\"IE00160: Could not find raw module\");\n}\n",
+        "gold_summary": "return the raw module with the give id ..",
+        "summary1": "look up raw module with raw module id and the raw module ..",
+        "summary2": "create a new module with the give id and raw module id that be raw in the list of raw module .."
+    },
+    {
+        "id": 3663,
+        "raw_code": "public Sorter(){\n  useDefaultVisual();\n  setLayout(new BorderLayout());\n  add(m_visual,BorderLayout.CENTER);\n  m_env=Environment.getSystemWide();\n  m_stopRequested=new AtomicBoolean(false);\n}\n",
+        "gold_summary": "construct a new sorter ..",
+        "summary1": "create a new sorter ..",
+        "summary2": "create a new sorter with default configuration .."
+    },
+    {
+        "id": 3672,
+        "raw_code": "public static String traceExcetion(Throwable ex){\n  final Writer result=new StringWriter();\n  final PrintWriter printWriter=new PrintWriter(result);\n  ex.printStackTrace(printWriter);\n  String stacktrace=result.toString();\n  Log.e(TAG,\"ERROR ---> \" + stacktrace);\n  return stacktrace;\n}\n",
+        "gold_summary": "write exception throw in log ..",
+        "summary1": "stream out the stack trace from the top exception ..",
+        "summary2": "this method take an input event and return a string representation of the trace back to a string since the first event be slightly different from all the rest of the rest of the rest of the .."
+    },
+    {
+        "id": 4202,
+        "raw_code": "private double prediction(Instance inst){\n  double[] normalizedInstance=normalizedInstance(inst);\n  double normalizedPrediction=prediction(normalizedInstance);\n  return denormalizedPrediction(normalizedPrediction);\n}\n",
+        "gold_summary": "out put the prediction make by this per <unk> <unk> on the give instance ..",
+        "summary1": "convert an instance of prediction in to value ..",
+        "summary2": "convert an instance of normalize prediction give to the max value when .."
+    },
+    {
+        "id": 4448,
+        "raw_code": "public Currency read(String symbol){\n  return Currency.getInstance(symbol);\n}\n",
+        "gold_summary": "this method be use to convert the string value give to an appropriate representation . this be use when an object be be deserialized from the xml document and the value for the string representation be require ..",
+        "summary1": "this method be use to convert the string value give in to an appropriate representation . this be use when an object be deserialized from the xml document and the value for the string representation be require ..",
+        "summary2": "read and return the currency object for the specify symbol .."
+    },
+    {
+        "id": 4537,
+        "raw_code": "public int read() throws IOException {\n  int val;\n  if ((val=is.read()) < 0) {\n    return -1;\n  }\n  if (bo == 'b') {\n    val=(char)((val << 8) | (is.read() & 0xff));\n  }\n else {\n    val=(char)((is.read() << 8) | (val & 0xff));\n  }\n  return val;\n}\n",
+        "gold_summary": "read a single character ..",
+        "summary1": "read a single character . this method will block until a character be available , an i o error occur , or the end of the stream be reach . sub class that intend to support efficient ..",
+        "summary2": "read a byte from the input stream .."
+    },
+    {
+        "id": 4638,
+        "raw_code": "public void addPriorityHandler(WarningHandler handler){\n  _priorityHandlers.add(handler);\n}\n",
+        "gold_summary": "add a warn event handler . high priority handler only get high priority warn , and they be notify first . other handler get all warn after high priority handler be notify ..",
+        "summary1": "add a priority handler that be notify whenever a priority handler have the same priority handler . high priority handler be notify first , and then high priority handler be notify ..",
+        "summary2": "add a warn event handler . high priority handler only get high priority warn , and they be notify first . other handler get all warn after high priority handler be notify .."
+    },
+    {
+        "id": 4643,
+        "raw_code": "final private String syntaxDef2SyntaxDesc(Attributes attrs) throws NamingException {\n  StringBuffer syntaxDesc=new StringBuffer(\"( \");\n  Attribute attr=null;\n  int count=0;\n  attr=attrs.get(NUMERICOID_ID);\n  if (attr != null) {\n    syntaxDesc.append(writeNumericOID(attr));\n    count++;\n  }\n else {\n    throw new ConfigurationException(\"Attribute type doesn't\" + \"have a numeric OID\");\n  }\n  attr=attrs.get(DESC_ID);\n  if (attr != null) {\n    syntaxDesc.append(writeQDString(attr));\n    count++;\n  }\n  if (count < attrs.size()) {\n    String attrId=null;\n    for (NamingEnumeration<? extends Attribute> ae=attrs.getAll(); ae.hasMoreElements(); ) {\n      attr=ae.next();\n      attrId=attr.getID();\n      if (attrId.equals(NUMERICOID_ID) || attrId.equals(DESC_ID)) {\n        continue;\n      }\n else {\n        syntaxDesc.append(writeQDStrings(attr));\n      }\n    }\n  }\n  syntaxDesc.append(\")\");\n  return syntaxDesc.toString();\n}\n",
+        "gold_summary": "translate attribute that describe an attribute syntax definition in to the string description as define in rfc <number> ..",
+        "summary1": "translate attribute that describe an syntax in to the string description as define in rfc <number> ..",
+        "summary2": "translate attribute that describe an attribute set to the string description as define in rfc <number> .."
+    },
+    {
+        "id": 4725,
+        "raw_code": "private ValueGeometry(byte[] bytes,Geometry geometry){\n  this.bytes=bytes;\n  this.geometry=geometry;\n  this.hashCode=Arrays.hashCode(bytes);\n}\n",
+        "gold_summary": "create a new geometry object ..",
+        "summary1": "create a geometry for a give byte array ..",
+        "summary2": "create a value geometry object .."
+    },
+    {
+        "id": 4819,
+        "raw_code": "private static IAbstractNode convertOr(final CommonTree ast) throws RecognitionException {\n  final List<IAbstractNode> children=new ArrayList<IAbstractNode>();\n  for (  final Object childObject : ast.getChildren()) {\n    children.add(convert((CommonTree)childObject));\n  }\n  return new CAbstractOrExpression(children);\n}\n",
+        "gold_summary": "convert an an tr l or ast in to a filter or ast ..",
+        "summary1": "convert an tr l and ast in to a filter and ast ..",
+        "summary2": "convert an an tr l and ast in to a filter and ast .."
+    },
+    {
+        "id": 4924,
+        "raw_code": "public ModifiableSolrParams add(String name,String... val){\n  String[] old=vals.put(name,val);\n  if (old != null) {\n    if (val == null || val.length < 1) {\n      String[] both=new String[old.length + 1];\n      System.arraycopy(old,0,both,0,old.length);\n      both[old.length]=null;\n      vals.put(name,both);\n    }\n else {\n      String[] both=new String[old.length + val.length];\n      System.arraycopy(old,0,both,0,old.length);\n      System.arraycopy(val,0,both,old.length,val.length);\n      vals.put(name,both);\n    }\n  }\n  return this;\n}\n",
+        "gold_summary": "add the give value to any exist name ..",
+        "summary1": "add some element of the specify name in this map . if the list contain multiple name , the same array be insert in to the same order ..",
+        "summary2": "add a set of parameter to the specify name .."
+    },
+    {
+        "id": 5087,
+        "raw_code": "private void drawArc(Canvas canvas){\n  if (mCurrentDashMode.equals(DASH_MODE.DOWNLOAD)) {\n    mnIndeterminateStartPosition+=(1 - mnProgress) * mnStartSpeed;\n    if ((mnIndeterminateStartPosition > CIRCULAR_FACTOR) || (mnIndeterminateStartPosition < 0)) {\n      mnIndeterminateStartPosition=0;\n    }\n    Rect currRect=new Rect();\n    getLocalVisibleRect(currRect);\n    float nRingBoundaryInner=mnRingRadius - (mnRingWidth / 2) - (mnArcWidth / 2);\n    mArcRect.set(mnViewCenter - nRingBoundaryInner,mnViewCenter - nRingBoundaryInner,mnViewCenter + nRingBoundaryInner,mnViewCenter + nRingBoundaryInner);\n    mPaint.setColor(mArcColor);\n    mPaint.setStyle(Paint.Style.STROKE);\n    mPaint.setStrokeWidth(mnArcWidth);\n    mPaint.setStrokeCap(Paint.Cap.ROUND);\n    canvas.drawArc(mArcRect,mnIndeterminateStartPosition,mnArcLength,false,mPaint);\n  }\n}\n",
+        "gold_summary": "draw the arc around the ring only for the download mode ..",
+        "summary1": "draw the give arc if valid arc ..",
+        "summary2": "this method draw an arc .."
+    },
+    {
+        "id": 5417,
+        "raw_code": "public void init(){\n  _tokenMgmtExecutor.scheduleWithFixedDelay(new ExpiredTokenCleaner(),1,_maxLifeValuesHolder.getMaxTokenIdleTimeInMins(),TimeUnit.MINUTES);\n  _tokenMgmtExecutor.scheduleWithFixedDelay(new TokenKeysUpdater(),1,FOREIGN_TOKEN_KEYS_BUNDLE_REFRESH_RATE_IN_MINS,TimeUnit.MINUTES);\n}\n",
+        "gold_summary": "initializer , start up the back grind expire token deletion thread and key updater thread no op unless multi vdc ..",
+        "summary1": "initialize the foreign key bundle ..",
+        "summary2": "create the bind of the token that have be start .."
+    },
+    {
+        "id": 5440,
+        "raw_code": "public static String decode(AbstractMessage msg,Boolean ext,int header){\n  if (ext == false) {\n    return decode(msg);\n  }\n  return \"Bootloader Message Type: \" + header;\n}\n",
+        "gold_summary": "return a string representation of a decode cbus message ..",
+        "summary1": "decode data message type to a specific message ..",
+        "summary2": "decode data and return it .."
+    },
+    {
+        "id": 5504,
+        "raw_code": "public void deleteItem(int position){\n  if (!isDataListEmpty() && position >= 0 && position < mDataList.size()) {\n    mDataList.remove(position);\n    notifyItemRemoved(position);\n  }\n}\n",
+        "gold_summary": "delete an item by position ..",
+        "summary1": "remove the item associate with the specify position of adapter ..",
+        "summary2": "delete an item associate with the specify position of adapter .."
+    },
+    {
+        "id": 5876,
+        "raw_code": "public static boolean isBeforeToday(Calendar _calendar){\n  return _calendar.before(Calendar.getInstance());\n}\n",
+        "gold_summary": "allow to know if a give calendar instance be set before today ..",
+        "summary1": "be the calendar before today ? ..",
+        "summary2": "return true if the calendar instance be ignore .."
+    },
+    {
+        "id": 5891,
+        "raw_code": "private boolean initializeSearchItemset(BitVector bv,int[] scratchi,int[] iters){\n  for (int i=0; i < scratchi.length; i++) {\n    iters[i]=(i == 0) ? bv.iter() : bv.iterAdvance(iters[i - 1]);\n    if (iters[i] < 0) {\n      return false;\n    }\n    scratchi[i]=bv.iterDim(iters[i]);\n  }\n  return true;\n}\n",
+        "gold_summary": "initialize the scratch <unk> ..",
+        "summary1": "check for any select item make up date ? ..",
+        "summary2": "it check to see if the digit be inside the double range and check it to make up date 's data base .."
+    },
+    {
+        "id": 6012,
+        "raw_code": "void encode(OutputStream os,boolean include_h) throws IOException {\n  int q=params.q;\n  os.write(getEncoded(f));\n  if (params.basisType == NTRUSigningKeyGenerationParameters.BASIS_TYPE_STANDARD) {\n    IntegerPolynomial fPrimeInt=fPrime.toIntegerPolynomial();\n    for (int i=0; i < fPrimeInt.coeffs.length; i++) {\n      fPrimeInt.coeffs[i]+=q / 2;\n    }\n    os.write(fPrimeInt.toBinary(q));\n  }\n else {\n    os.write(getEncoded(fPrime));\n  }\n  if (include_h) {\n    os.write(h.toBinary(q));\n  }\n}\n",
+        "gold_summary": "write the basis to an out put stream ..",
+        "summary1": "encode a give out put stream ..",
+        "summary2": "return the encode version of this connection to the give out put stream .."
+    },
+    {
+        "id": 6073,
+        "raw_code": "private List findPhonemes(){\n  Set set=new HashSet();\n  for (int i=0; i < stateMachine.length; i++) {\n    if (stateMachine[i] instanceof FinalState) {\n      FinalState fstate=(FinalState)stateMachine[i];\n      if (fstate.phoneList != null) {\n        for (int j=0; j < fstate.phoneList.length; j++) {\n          set.add(fstate.phoneList[j]);\n        }\n      }\n    }\n  }\n  return new ArrayList(set);\n}\n",
+        "gold_summary": "return a list of all the phoneme use by the lts rule ..",
+        "summary1": "find the final state of the give state machine . it be assume that the state be not stop ..",
+        "summary2": "find the list of state which be not of the give state .."
+    },
+    {
+        "id": 6152,
+        "raw_code": "public boolean hasLeader(String playerName){\n  return (leader != null) && leader.equals(playerName);\n}\n",
+        "gold_summary": "be the specify player the leader of this group ? ..",
+        "summary1": "check if this member have the specify name of the leader ..",
+        "summary2": "column have the specify leader .."
+    },
+    {
+        "id": 6167,
+        "raw_code": "public void testSortsAttributesBeforeElements() throws Exception {\n  XppDom dom1=XppFactory.buildDom(\"<dom x='a'><a/></dom>\");\n  XppDom dom2=XppFactory.buildDom(\"<dom x='b'><b/></dom>\");\n  assertEquals(-1,comparator.compare(dom1,dom2));\n  assertEquals(\"/dom[@x]\",xpath.get());\n  assertEquals(1,comparator.compare(dom2,dom1));\n  assertEquals(\"/dom[@x]\",xpath.get());\n}\n",
+        "gold_summary": "test comparison sort attribute before element ..",
+        "summary1": "test comparison of attribute before different value ..",
+        "summary2": "test comparison of attribute before element .."
+    },
+    {
+        "id": 6363,
+        "raw_code": "public Assignment update(Border border){\n  Arrays.sort(cs);\n  int j=1;\n  boolean found=(cs[0].core == border.core);\n  for (int i=1; i < cs.length; i++) {\n    if (cs[i].core != cs[i - 1].core) {\n      cs[j++]=cs[i];\n    }\n    found|=(cs[i].core == border.core);\n  }\n  if (found) {\n    if (j == 1) {\n      Border r=cs[0];\n      cs=null;\n      return r;\n    }\n    if (j < cs.length) {\n      cs=Arrays.copyOf(cs,j);\n    }\n    return this;\n  }\n  if (j + 1 != cs.length) {\n    cs=Arrays.copyOf(cs,j + 1);\n  }\n  cs[j]=border;\n  return this;\n}\n",
+        "gold_summary": "add a new border to the exist border ..",
+        "summary1": "up date the cache accord to the give border ..",
+        "summary2": "up date the value of the share array .."
+    },
+    {
+        "id": 6482,
+        "raw_code": "public synchronized boolean clear(){\n  if (isLoading()) {\n    return false;\n  }\n  loader=new Thread(null);\n  loader.start();\n  return true;\n}\n",
+        "gold_summary": "will clear the current class and reload in another thread ..",
+        "summary1": "remove all thread from the cache . this method be thread safe ..",
+        "summary2": "check if the loader be still load .."
+    },
+    {
+        "id": 6517,
+        "raw_code": "public static BigInteger calculateA(BigInteger p,BigInteger q,BigInteger gA,BigInteger x2s){\n  return gA.modPow(x2s,p);\n}\n",
+        "gold_summary": "calculate a as do in round 2 ..",
+        "summary1": "convenience function to calculate the base on x and y one ..",
+        "summary2": "calculate a big integer give as an integer , base on the string representation and the value of an big integer give as an integer .."
+    },
+    {
+        "id": 6637,
+        "raw_code": "private void commitChanges(){\n  hopfieldPropsPanel.commitChanges();\n  inputPanel.commitChanges();\n}\n",
+        "gold_summary": "commit all change make in the dialog to the model ..",
+        "summary1": "commit change not handle in action perform ..",
+        "summary2": "commit change not handle in the text field .."
+    },
+    {
+        "id": 6657,
+        "raw_code": "public static String[] makeStrings(Collection<InetAddress> addrs){\n  String[] result=new String[addrs.size()];\n  int i=0;\n  for (  InetAddress addr : addrs) {\n    result[i++]=addr.getHostAddress();\n  }\n  return result;\n}\n",
+        "gold_summary": "create a string array of host address from a collection of inet address ..",
+        "summary1": "convert a collection of address to an array of string in to an array of address ..",
+        "summary2": "construct a string from an array of address .."
+    },
+    {
+        "id": 6714,
+        "raw_code": "public static boolean isLetter(Character self){\n  return Character.isLetter(self);\n}\n",
+        "gold_summary": "determine if a character be a letter . synonym for character . be letter this ..",
+        "summary1": "determine if a character be a letter . synonym for character . be letter or digit this ..",
+        "summary2": "determine if a character be a letter or digit . synonym for character . be letter or .."
+    },
+    {
+        "id": 6750,
+        "raw_code": "public List<Document> search(Query query,boolean prefixWildCard){\n  List<Document> documents=new ArrayList<Document>();\n  try {\n    IndexSearcher searcher=getSearcher();\n    TopDocs search=searcher.search(query,10000);\n    for (    ScoreDoc scoreDoc : search.scoreDocs) {\n      Document doc=searcher.doc(scoreDoc.doc);\n      documents.add(doc);\n    }\n  }\n catch (  Exception e) {\n    e.printStackTrace();\n    throw new RuntimeException(e);\n  }\n  return documents;\n}\n",
+        "gold_summary": "searc he be through the index for the specify query and return the list of document that find a match for the query ..",
+        "summary1": "execute a search query give a document ..",
+        "summary2": "search for document search from document and return a list of match document .."
+    },
+    {
+        "id": 7038,
+        "raw_code": "private void rename(Table table){\n  if (renameDefinitions != null) {\n    for (    Column col : table.getAllColumns()) {\n      String newColName=renameDefinitions.getNewColumnName(table.getSchema(),table.getName(),col.getName());\n      if (newColName != null)       col.setName(newColName);\n    }\n    String newTableName=renameDefinitions.getNewTableName(table.getSchema(),table.getName());\n    String newSchemaName=renameDefinitions.getNewSchemaName(table.getSchema(),table.getName());\n    if (newTableName != null)     table.setTable(newTableName);\n    if (newSchemaName != null)     table.setSchema(newSchemaName);\n  }\n}\n",
+        "gold_summary": "if rename definition object be prepare , do the look up and rename of schema , table and column . nothing be do if rename definition be null ..",
+        "summary1": "rename all field in this table ..",
+        "summary2": "rename all column and other table .."
+    },
+    {
+        "id": 7225,
+        "raw_code": "public static double projectTimeWithin24Hours(double time){\n  double secondsInOneDay=60 * 60 * 24;\n  if (time == Double.NEGATIVE_INFINITY || time == Double.POSITIVE_INFINITY) {\n    DebugLib.stopSystemAndReportInconsistency(\"time is not allowed to be minus or plus infinity\");\n  }\n  while (time < 0) {\n    time+=secondsInOneDay;\n  }\n  if (time < secondsInOneDay) {\n    return time;\n  }\n else {\n    return ((time / secondsInOneDay) - (Math.floor(time / secondsInOneDay))) * secondsInOneDay;\n  }\n}\n",
+        "gold_summary": "if time be <number> <number> <number> second , it will be project in to next day , e. g. time <number> <number> <number> 1 1 even if time ..",
+        "summary1": "return the time in second with in millisecond . e . g . h : mm : ss ..",
+        "summary2": "convert project time in to project time .."
+    },
+    {
+        "id": 7319,
+        "raw_code": "public void scale(int factor){\n  if (m_icon != null) {\n    removeAll();\n    Image pic=m_icon.getImage();\n    int width=m_icon.getIconWidth();\n    int height=m_icon.getIconHeight();\n    int reduction=width / factor;\n    width-=reduction;\n    height-=reduction;\n    pic=pic.getScaledInstance(width,height,Image.SCALE_SMOOTH);\n    m_icon=new ImageIcon(pic);\n    m_visualLabel=new JLabel(m_icon);\n    add(m_visualLabel,BorderLayout.CENTER);\n    Dimension d=m_visualLabel.getPreferredSize();\n    Dimension d2=new Dimension((int)d.getWidth() + 10,(int)d.getHeight() + 10);\n    setMinimumSize(d2);\n    setPreferredSize(d2);\n    setMaximumSize(d2);\n  }\n}\n",
+        "gold_summary": "reduce this bean visual 's icon size by the give factor ..",
+        "summary1": "scale the size of the icon ..",
+        "summary2": "adjust the image base on the give factor .."
+    },
+    {
+        "id": 7589,
+        "raw_code": "public static List<File> sortInBatch(File file,Comparator<String> cmp) throws IOException {\n  return sortInBatch(file,cmp,DEFAULTMAXTEMPFILES);\n}\n",
+        "gold_summary": "this will simply load the file by block of x row , then sort them in memory , and write the result to temporary file that have to be merge late ..",
+        "summary1": "sort the give file base on the give comparator ..",
+        "summary2": "sort the give file use the give comparator .."
+    },
+    {
+        "id": 7729,
+        "raw_code": "public final double cos(){\n  return Math.cos(this.radians);\n}\n",
+        "gold_summary": "obtain the cosine of this angle ..",
+        "summary1": "return the trigonometric cosine of this angle ..",
+        "summary2": "return the trigonometric cosine of this angle in radian .."
+    },
+    {
+        "id": 7975,
+        "raw_code": "private static Boolean findConvexPolygon(final PlanetModel planetModel,final Edge currentEdge,final GeoCompositePolygon rval,final EdgeBuffer edgeBuffer,final List<GeoPolygon> holes,final GeoPoint testPoint){\n  final Set<Edge> includedEdges=new HashSet<>();\n  includedEdges.add(currentEdge);\n  Edge firstEdge=currentEdge;\n  Edge lastEdge=currentEdge;\n  while (true) {\n    if (firstEdge.startPoint == lastEdge.endPoint) {\n      break;\n    }\n    final Edge newLastEdge=edgeBuffer.getNext(lastEdge);\n    if (isWithin(newLastEdge.endPoint,includedEdges)) {\n      final SidedPlane returnBoundary;\n      if (firstEdge.startPoint != newLastEdge.endPoint) {\n        returnBoundary=new SidedPlane(firstEdge.endPoint,firstEdge.startPoint,newLastEdge.endPoint);\n      }\n else {\n        returnBoundary=null;\n      }\n      boolean foundPointInside=false;\n      final Iterator<Edge> edgeIterator=edgeBuffer.iterator();\n      while (edgeIterator.hasNext()) {\n        final Edge edge=edgeIterator.next();\n        if (!includedEdges.contains(edge) && edge != newLastEdge) {\n          if (edge.startPoint != newLastEdge.endPoint) {\n            if (isWithin(edge.startPoint,includedEdges,newLastEdge,returnBoundary)) {\n              foundPointInside=true;\n              break;\n            }\n          }\n          if (edge.endPoint != firstEdge.startPoint) {\n            if (isWithin(edge.endPoint,includedEdges,newLastEdge,returnBoundary)) {\n              foundPointInside=true;\n              break;\n            }\n          }\n        }\n      }\n      if (!foundPointInside) {\n        includedEdges.add(newLastEdge);\n        lastEdge=newLastEdge;\n        continue;\n      }\n    }\n    break;\n  }\n  while (true) {\n    if (firstEdge.startPoint == lastEdge.endPoint) {\n      break;\n    }\n    final Edge newFirstEdge=edgeBuffer.getPrevious(firstEdge);\n    if (isWithin(newFirstEdge.startPoint,includedEdges)) {\n      final SidedPlane returnBoundary;\n      if (newFirstEdge.startPoint != lastEdge.endPoint) {\n        returnBoundary=new SidedPlane(lastEdge.startPoint,lastEdge.endPoint,newFirstEdge.startPoint);\n      }\n else {\n        returnBoundary=null;\n      }\n      boolean foundPointInside=false;\n      final Iterator<Edge> edgeIterator=edgeBuffer.iterator();\n      while (edgeIterator.hasNext()) {\n        final Edge edge=edgeIterator.next();\n        if (!includedEdges.contains(edge) && edge != newFirstEdge) {\n          if (edge.startPoint != lastEdge.endPoint) {\n            if (isWithin(edge.startPoint,includedEdges,newFirstEdge,returnBoundary)) {\n              foundPointInside=true;\n              break;\n            }\n          }\n          if (edge.endPoint != newFirstEdge.startPoint) {\n            if (isWithin(edge.endPoint,includedEdges,newFirstEdge,returnBoundary)) {\n              foundPointInside=true;\n              break;\n            }\n          }\n        }\n      }\n      if (!foundPointInside) {\n        includedEdges.add(newFirstEdge);\n        firstEdge=newFirstEdge;\n        continue;\n      }\n    }\n    break;\n  }\n  if (includedEdges.size() < 2) {\n    return false;\n  }\n  final List<GeoPoint> points=new ArrayList<GeoPoint>(includedEdges.size() + 1);\n  final BitSet internalEdges=new BitSet(includedEdges.size());\n  final boolean returnIsInternal;\n  if (firstEdge.startPoint == lastEdge.endPoint) {\n    if (includedEdges.size() < 3) {\n      return false;\n    }\n    Edge edge=firstEdge;\n    points.add(edge.startPoint);\n    int k=0;\n    while (true) {\n      if (edge == lastEdge) {\n        break;\n      }\n      points.add(edge.endPoint);\n      internalEdges.set(k++,edge.isInternal);\n      edge=edgeBuffer.getNext(edge);\n    }\n    returnIsInternal=lastEdge.isInternal;\n    for (int i=0; i < points.size(); i++) {\n      final GeoPoint start=points.get(i);\n      final GeoPoint end=points.get(getLegalIndex(i + 1,points.size()));\n      final Plane planeToFind=new Plane(start,end);\n      int endPointIndex=-1;\n      for (int j=0; j < points.size(); j++) {\n        final int index=getLegalIndex(j + i + 2,points.size());\n        if (!planeToFind.evaluateIsZero(points.get(index))) {\n          endPointIndex=index;\n          break;\n        }\n      }\n      if (endPointIndex == -1) {\n        return false;\n      }\n    }\n    edgeBuffer.clear();\n  }\n else {\n    final SidedPlane returnSidedPlane=new SidedPlane(firstEdge.endPoint,false,firstEdge.startPoint,lastEdge.endPoint);\n    final Edge returnEdge=new Edge(firstEdge.startPoint,lastEdge.endPoint,returnSidedPlane,true);\n    final List<Edge> edges=new ArrayList<Edge>(includedEdges.size());\n    returnIsInternal=true;\n    Edge edge=firstEdge;\n    points.add(edge.startPoint);\n    int k=0;\n    while (true) {\n      points.add(edge.endPoint);\n      internalEdges.set(k++,edge.isInternal);\n      edges.add(edge);\n      if (edge == lastEdge) {\n        break;\n      }\n      edge=edgeBuffer.getNext(edge);\n    }\n    for (int i=0; i < points.size(); i++) {\n      final GeoPoint start=points.get(i);\n      final GeoPoint end=points.get(getLegalIndex(i + 1,points.size()));\n      final Plane planeToFind=new Plane(start,end);\n      int endPointIndex=-1;\n      for (int j=0; j < points.size(); j++) {\n        final int index=getLegalIndex(j + i + 2,points.size());\n        if (!planeToFind.evaluateIsZero(points.get(index))) {\n          endPointIndex=index;\n          break;\n        }\n      }\n      if (endPointIndex == -1) {\n        return false;\n      }\n    }\n    edgeBuffer.replace(edges,returnEdge);\n  }\n  if (testPoint != null && holes != null && holes.size() > 0) {\n    final GeoPolygon testPolygon=new GeoConvexPolygon(planetModel,points,null,internalEdges,returnIsInternal);\n    if (testPolygon.isWithin(testPoint)) {\n      return null;\n    }\n  }\n  final GeoPolygon realPolygon=new GeoConvexPolygon(planetModel,points,holes,internalEdges,returnIsInternal);\n  if (testPoint != null && (holes == null || holes.size() == 0)) {\n    if (realPolygon.isWithin(testPoint)) {\n      return null;\n    }\n  }\n  rval.addShape(realPolygon);\n  return true;\n}\n",
+        "gold_summary": "look for a convex polygon at the specify edge . if we find it , create one and adjust the edge buff ..",
+        "summary1": "searc he be the edge in the edge buff for a give edge buff . this check to see if the edge be inside of the edge , and return false if the edge be not contain ..",
+        "summary2": "this method return true if the edge be contain in a convex polygon .."
+    },
+    {
+        "id": 8041,
+        "raw_code": "private void forceInternalError(){\n  throw new InternalError(\"gotcha\");\n}\n",
+        "gold_summary": "not really any good way to <unk> java to do this , so i be just <unk> throw it directly ..",
+        "summary1": "force a fully initialize error to be use ..",
+        "summary2": "force internal error to the external process .."
+    },
+    {
+        "id": 8437,
+        "raw_code": "PointComparator(int dimension){\n  this.dimension=dimension;\n}\n",
+        "gold_summary": "construct a new comparator on the give dimension ..",
+        "summary1": "construct a comparator base on the give dimension ..",
+        "summary2": "construct a point comparator .."
+    },
+    {
+        "id": 8512,
+        "raw_code": "public void saveWorkingInstancesToFileQ(){\n  if (m_IOThread == null) {\n    m_FileChooser.setCapabilitiesFilter(m_FilterEditor.getCapabilitiesFilter());\n    m_FileChooser.setAcceptAllFileFilterUsed(false);\n    int returnVal=m_FileChooser.showSaveDialog(this);\n    if (returnVal == JFileChooser.APPROVE_OPTION) {\n      Instances inst=new Instances(m_Instances);\n      inst.setClassIndex(m_AttVisualizePanel.getColoringIndex());\n      saveInstancesToFile(m_FileChooser.getSaver(),inst);\n    }\n    FileFilter temp=m_FileChooser.getFileFilter();\n    m_FileChooser.setAcceptAllFileFilterUsed(true);\n    m_FileChooser.setFileFilter(temp);\n  }\n else {\n    JOptionPane.showMessageDialog(this,\"Can't save at this time,\\n\" + \"currently busy with other IO\",\"Save Instances\",JOptionPane.WARNING_MESSAGE);\n  }\n}\n",
+        "gold_summary": "query the user for a file to save instance as , then save the instance in a back grind process . this be do in the io thread , and an error message be pop up if ..",
+        "summary1": "save the selection of an instance in to a file ..",
+        "summary2": "save instance to file chooser .."
+    }
+]
