@@ -26,7 +26,7 @@ from nltk.translate.bleu_score import sentence_bleu
 from nltk.util import ngrams
 from collections import Counter
 
-openai.api_key = "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"
+openai.api_key = ""
 
 example_code = """
 public synchronized boolean start() {
